@@ -1,4 +1,4 @@
-Ibotta Dev Project
+Dev Project
 =========
 
 
