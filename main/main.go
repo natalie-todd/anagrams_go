@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/natalie-todd/anagrams_go/loader"
 )
 
 func get(w http.ResponseWriter, request *http.Request) {
