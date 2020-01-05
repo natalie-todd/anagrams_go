@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"strconv"
 
-	"github.com/gorilla/mux"
+	"github.com/natalie-todd/anagrams_go/loader"
+
 )
 
 func get(w http.ResponseWriter, request *http.Request) {
@@ -74,4 +76,6 @@ func main() {
 	api.HandleFunc("/user/{userID}/comment/{commentID}", params).Methods(http.MethodGet)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
+
+	loader.LoadData()
 }
