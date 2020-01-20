@@ -6,9 +6,6 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-
-	"github.com/natalie-todd/anagrams_go/loader"
-
 )
 
 func get(w http.ResponseWriter, request *http.Request) {
@@ -65,10 +62,16 @@ func params(w http.ResponseWriter, request *http.Request) {
 	w.Write([]byte (fmt.Sprintf(`{"userID": %d, "commentID": %d, "location": %s}`, userID, commentID, location)))
 }
 
+//func getAnagrams(w http.ResponseWriter, request *http.Request) {
+//	pathParams := mux.Vars(request)
+//	w.Header().Set("Content-Type", "application/json")
+//	w.WriteHeader(http.StatusOK)
+//}
+
 func main() {
 	router := mux.NewRouter()
 	api := router.PathPrefix("/api/v1").Subrouter()
-	api.HandleFunc("", get).Methods(http.MethodGet)
+	//api.HandleFunc("/anagrams/{word}", getAnagrams).Methods(http.MethodGet)
 	api.HandleFunc("", post).Methods(http.MethodPost)
 	api.HandleFunc("", put).Methods(http.MethodPut)
 	api.HandleFunc("", delete).Methods(http.MethodDelete)
@@ -77,5 +80,4 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 
-	loader.LoadData()
 }
